@@ -45,7 +45,7 @@ class _MenuLateralState extends State<MenuLateral> {
                     title: Text('Processos e anexos'),
                     leading: Icon(Icons.ads_click_rounded),
                     onTap: () {
-                      
+                      Navigator.pushNamed(context, 'TelaExtensaoProcessos');
                     },
                   ),
                   ListTile(

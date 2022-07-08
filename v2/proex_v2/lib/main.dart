@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:proex_v2/gridview.dart';
 import 'package:proex_v2/menulateral.dart';
 import 'telaprincipal.dart';
 import 'telaextensao.dart';
@@ -26,10 +27,13 @@ class _ProexAppState extends State<ProexApp> {
       'TelaPrincipal':(context) => MyHomePage(),
       'MenuLateral':(context) =>  MenuLateral() ,
       'TelaExtensao':(context) => TelaExtensao(),
+      //'TelaExtensaoInicio':(context) => ;
+      'TelaExtensaoProcessos':(context) => TelaExtensaoProcessos(),
       //'Tela 1':(context) => Tela1();
       //'Tela 2':(context) => Tela2();
     },
     debugShowCheckedModeBanner: false,
     );
   }
-}
+} 
+final Color vermelhoProex=Color.fromRGBO(150, 30, 30, 1);

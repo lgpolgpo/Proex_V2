@@ -2,34 +2,105 @@
 
 // ignore_for_file: prefer_const_constructors
 
+
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
-import 'menulateral.dart';
 import 'carrosel.dart';
+import 'menulateral.dart';
 
-class MyHomePage extends StatelessWidget{
+class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
-    Widget build(BuildContext context) {
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: minhaAppBar(tituloAppBar: 'PRÓ-REITORIA DE EXTENSÃO UFSJ'),
       drawer: MenuLateral(),
       body:Container(
         padding: const EdgeInsets.all(5) ,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CarouselDemo(),
-            meuBody1(),
-            meuBody2(),
-            //teste1(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              CarouselDemo(),
+              meuPaddingPadrao(
+                context,
+                corPrimaria: Color.fromRGBO(150, 30, 30, 1) ,
+                corSecundaria:Colors.white ,
+                corFontePrimaria: Color.fromARGB(255, 248, 244, 244),
+                corFonteSecundaria: Color.fromARGB(255, 193, 192, 192),
+                icone:'assets/images/mundinho.png' ,
+                titulo: 'Pró-Reitoria de Extensão e Assuntos Comunitários ',
+                tamanhoFontePrimaria: 16,
+                subTitulo: 'A PROEX é o órgão encarregado pela gestão das atividades de extensão...',
+                tamanhoFonteSecundaria: 12,
+              ),
+              meuPaddingPadrao(
+                context,
+                corPrimaria:Colors.white ,
+                corSecundaria:Color.fromRGBO(150, 30, 30, 1) ,
+                corFontePrimaria:  Colors.black87,
+                corFonteSecundaria: Colors.black54,
+                icone:'assets/images/conexao.png',
+                titulo: 'Organização da PROEX',
+                tamanhoFontePrimaria: 18,
+                subTitulo: 'Conheça nossos setores',
+                tamanhoFonteSecundaria: 14,
+              ),
+              SizedBox(width: double.infinity,height: 30,),
+              Text(
+                'Links Úteis:',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black87,//cor fonte primaria 
+                  ),
+                  textAlign: TextAlign.start,
+              ),
+              SizedBox(width: double.infinity,height: 30,),
+              Row(
+                mainAxisAlignment:MainAxisAlignment.spaceEvenly ,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  cardizinho(
+                    context,
+                    corPrimaria:Color.fromRGBO(150, 30, 30, 1) ,
+                    corFonte: Colors.white,
+                    tamanhoFonte: 13,
+                    texto: 'Conheça nossos colaboradores',
+                    icone: 'assets/images/colaboradores.png',
+                  ),
+                  cardizinho(
+                    context,
+                    corPrimaria:Colors.white,
+                    corFonte: Colors.black ,
+                    tamanhoFonte: 13,
+                    texto: 'Identidade Visual PROEX',
+                    icone: 'assets/images/mente.png',
+                  ),
+                  cardizinho(
+                    context,
+                    corPrimaria:Color.fromRGBO(150, 30, 30, 1) ,
+                    corFonte: Colors.white,
+                    tamanhoFonte: 10,
+                    texto: 'Identidade visual do centro cultural UFSJ',
+                    icone: 'assets/images/mesadereuniao.png',
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ), 
-    ); 
-  }    
+    );
+  }
 }
+
+
 
 // ignore: must_be_immutable
 AppBar minhaAppBar({ required String tituloAppBar}){
@@ -55,10 +126,10 @@ AppBar minhaAppBar({ required String tituloAppBar}){
     );
 }
 
-
-Widget meuBody1(){
-  return const Padding(
-              padding:EdgeInsets.all(8),
+ 
+Widget meuPaddingPadrao(context,{String? icone,Color? corPrimaria,Color? corSecundaria,Color? corFontePrimaria,Color? corFonteSecundaria,String? titulo,String? subTitulo,double? tamanhoFontePrimaria,double? tamanhoFonteSecundaria}){
+  return Padding(
+              padding: EdgeInsets.all(8),
               child: ListTile(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -66,37 +137,38 @@ Widget meuBody1(){
                     bottomRight: Radius.circular(22),
                   ),
                 ),
+                isThreeLine: true,
                 leading:Card(
-                  color: Colors.white,
+                  color: Colors.white,//cor secundaria
                   margin: EdgeInsets.all(0),
                   child:Image(
                         fit:BoxFit.contain ,
-                        image: AssetImage('assets/images/mundinho.png'), 
-                        alignment: Alignment.centerLeft,
-                        width: 40.0,
-                        height: 40.0,
+                        image: AssetImage(icone!), //icone
+                        alignment: Alignment.center,
+                        width:50,
+                        height: 80.0,
                       ),
                 ),
                 title:Text(
-                  'Pró-Reitoria de Extensão e Assuntos Comunitários ',
+                  titulo!,
                   style: TextStyle(
-                    fontSize: 16,
-                    color: Color.fromARGB(255, 248, 244, 244),
+                    fontSize: tamanhoFontePrimaria,
+                    color: corFontePrimaria,//cor fonte primaria 
                   ),
                   textAlign: TextAlign.center,
                 ),
                 subtitle: Text(
-                  'A PROEX é o órgão encarregado pela gestão das atividades de extensão...',
+                  subTitulo!,
                    style: TextStyle(
-                    fontSize: 12,
-                    color: Color.fromARGB(255, 193, 192, 192),
+                    fontSize: tamanhoFonteSecundaria,
+                    color: corFonteSecundaria,//cor fonte secundaria
                   ),
                 textAlign: TextAlign.center,
                 ), 
-                tileColor: Color.fromRGBO(150, 30, 30, 1) , 
+                tileColor: corPrimaria, //cor primaria
                 trailing: Card(
-                  color: Colors.white, 
-                  margin: EdgeInsets.only(left:0 ,right: 10,top: 0,bottom: 0) ,
+                  color: corSecundaria, //cor secundaria
+                  margin: EdgeInsets.zero ,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(22), 
@@ -107,129 +179,49 @@ Widget meuBody1(){
                   ),
                   child:IconButton(
                       onPressed: null,
-                      icon: Icon(Icons.add),
-                      iconSize: 35,
-                      alignment: AlignmentDirectional.centerEnd ,
-                    ),
-                  ),
-                ), 
-                );
-}
-Widget meuBody2(){
-  return const Padding(
-              padding:EdgeInsets.all(8),
-              child: ListTile(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(22), 
-                    bottomRight: Radius.circular(22),
-                  ),
-                ),
-                leading:Card(
-                  color: Colors.white,
-                  margin: EdgeInsets.all(0),
-                  child:Image(
-                        fit:BoxFit.fill ,
-                        image: AssetImage('assets/images/conexao.png'), 
-                        alignment: Alignment.centerLeft,
-                        width: 40.0,
-                        height: 40.0,
-                      ),
-                ),
-                title:Text(
-                  'Organização da PROEX',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black87,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                subtitle: Text(
-                  'Conheça nossos setores',
-                   style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.black54,
-                  ),
-                ), 
-                tileColor: Colors.white , 
-                trailing: Card(
-                  color: Color.fromRGBO(150, 30, 30, 1), 
-                  margin: EdgeInsets.only(left:0 ,right: 10,top: 0,bottom: 0) ,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(22), 
-                      topRight: Radius.circular(22),
-                      bottomLeft: Radius.circular(22),
-                      bottomRight: Radius.circular(22),
-                    ),
-                  ),
-                  child:IconButton(
-                      onPressed: null,
-                      icon: Icon(
+                      icon:Icon(
                         Icons.add,
-                        color: Colors.white,
+                        color: corPrimaria,
                       ),
-                      
                       iconSize: 35,
                       alignment: AlignmentDirectional.centerEnd ,
                     ),
                   ),
+                ), 
+      );
+}
+
+
+Container cardizinho(context,{Color? corPrimaria,Color? corFonte,String? texto,String? icone,double? tamanhoFonte}){
+  return Container(
+          width: MediaQuery.of(context).size.width*0.30,
+          height: MediaQuery.of(context).size.height*0.20,
+          decoration: BoxDecoration(
+            color:corPrimaria,//cor primaria
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Column(
+            mainAxisAlignment:MainAxisAlignment.spaceEvenly ,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius:MediaQuery.of(context).size.width*0.10 ,
+                backgroundColor: Colors.white,//cor secundaria
+                child: Image.asset(
+                  icone!,//icone
+                  width: MediaQuery.of(context).size.width*0.25,
+                  height: MediaQuery.of(context).size.height*0.25,
                 ),
-              );
-}
-Widget cartaoimagem(){
-  return Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(2), 
-                topRight: Radius.circular(2),
-                bottomLeft: Radius.circular(2),
-                bottomRight: Radius.circular(2),
               ),
-            ),
-            color: Colors.white,
-            child:Image(
-              image: AssetImage('assets/images/colaboradores.png'),
-              width: 30,
-              height: 30,
-            ),
-          );
-} 
-Widget cartaotexto(){
-  return Text(
-            'Conheça nossos colaboradores',
-            textAlign: TextAlign.end,
-            style: TextStyle(
-              fontSize:12 ,
-              color: Colors.black,
-            ),
-          );
-}
-Widget teste1(){
-  return Directionality(
-    textDirection: TextDirection.ltr,
-    child: Row(
-      mainAxisAlignment:MainAxisAlignment.spaceAround ,
-      children: [
-        Column(
-          children: [
-            cartaoimagem(),
-            cartaotexto(),
-          ],
-        ),
-        Column(
-          children: [
-            cartaoimagem(),
-            cartaotexto(),
-          ],
-        ),
-         Column(
-          children: [
-            cartaoimagem(),
-            cartaotexto(),
-          ],
-        ),
-      ],
-    ),
-  );
+              Text(
+                texto!,//texto
+                textAlign: TextAlign.center,
+                style:TextStyle(
+                  color: corFonte,//cor secundaria
+                  fontSize: tamanhoFonte,
+                ),
+              ),
+            ],
+          ),
+        );
 }

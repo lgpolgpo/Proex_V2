@@ -45,7 +45,7 @@ class CarouselDemo extends StatelessWidget {
         child: const Text(
           ' →    ',
           textAlign: TextAlign.center ,
-          style:TextStyle(fontSize: 30),
+          style:TextStyle(fontSize: 35),
         ),
       ),
     ],
