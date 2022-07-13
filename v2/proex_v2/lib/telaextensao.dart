@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types
 
 import 'package:flutter/material.dart';
-import 'package:proex_v2/gridview.dart';
-import 'package:proex_v2/telaprincipal.dart';
+import 'package:proex_v2/main.dart';
+import 'package:proex_v2/telaextensaoinicio.dart';
+import 'package:proex_v2/telaextensaoprocessos.dart';
 import 'package:share/share.dart';
 
 class TelaExtensao extends StatefulWidget {
@@ -12,18 +13,51 @@ class TelaExtensao extends StatefulWidget {
   State<TelaExtensao> createState() => _TelaExtensaoState();
 }
 
-class _TelaExtensaoState extends State<TelaExtensao> {
-  int paginaInicial=0;
+class _TelaExtensaoState extends State<TelaExtensao> /*with SingleTickerProviderStateMixin*/ {
+  /*final TabController paginaInicial;
+  @override
+  void estadoinicial(){
+    super.estadoinicial();
+    paginaInicial = TabController(length: 4 ,vsync: this);
+  }
+  @override
+  void dispose(){
+    paginaInicial.dispose();
+    super.dispose();
+  }*/
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
-      initialIndex: paginaInicial,
+      initialIndex: 0,
       child: Scaffold(        
-        appBar: AppBar(
+        appBar: appBarTelaExtensao(),
+        body: TabBarView(
+          children: [
+            TelaExtensaoInicio(),
+            TelaExtensaoProcessos(),
+            contrutordePagina('Políticas'),
+            contrutordePagina('Projetos e programas'),
+          ],
+        ),
+    ),
+  );
+  
+  }
+}
+
+
+Widget contrutordePagina(String text)=>Center(
+    child:Text(
+      text
+    ),
+  );
+
+AppBar appBarTelaExtensao(){
+  return  AppBar(
           titleTextStyle: const TextStyle(fontSize: 18),        
           title: const Text('EXTENSÃO'),
-          backgroundColor: const Color.fromRGBO(150, 30, 30, 1),      
+          backgroundColor: vermelhoProex ,      
           actions: [
               IconButton(
                 onPressed: () {
@@ -52,137 +86,5 @@ class _TelaExtensaoState extends State<TelaExtensao> {
               Tab(text: 'Projetos e programas'),
             ],
           ),
-        ),
-        body: TabBarView(
-          children: [
-            telaExtensaoInicio(),
-            telaExtensaoProcessos(context),
-            contrutordePagina('Políticas'),
-            contrutordePagina('Projetos e programas'),
-          ],
-        ),
-    ),
-  );
-  
-  }
-}
-Widget contrutordePagina(String text)=>Center(
-    child:Text(
-      text
-    ),
-  );
-
-class telaExtensaoInicio extends StatefulWidget {
-  const telaExtensaoInicio({Key? key}) : super(key: key);
-
-  @override
-  State<telaExtensaoInicio> createState() => _telaExtensaoInicioState();
-}
-
-class _telaExtensaoInicioState extends State<telaExtensaoInicio> {
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          meuPaddingPadrao(
-            context,
-            corPrimaria: Color.fromRGBO(150, 30, 30, 1) ,
-            corSecundaria:Colors.white ,
-            corFontePrimaria: Color.fromARGB(255, 248, 244, 244),
-            corFonteSecundaria: Color.fromARGB(255, 193, 192, 192),
-            icone:'assets/images/mundinho.png' ,
-            titulo: 'Pró-Reitoria de Extensão e Assuntos Comunitários ',
-            tamanhoFontePrimaria: 16,
-            subTitulo: 'A PROEX é o órgão encarregado pela gestão das atividades de extensão...',
-            tamanhoFonteSecundaria: 12,
-          ),
-          meuPaddingPadrao(
-            context,
-            corPrimaria:Colors.white ,
-            corSecundaria:Color.fromRGBO(150, 30, 30, 1) ,
-            corFontePrimaria:  Colors.black87,
-            corFonteSecundaria: Colors.black54,
-            icone:'assets/images/conexao.png',
-            titulo: 'Organização da PROEX',
-            tamanhoFontePrimaria: 18,
-            subTitulo: 'Conheça nossos setores',
-            tamanhoFonteSecundaria: 14,
-          ),
-          meuPaddingPadrao(
-            context,
-            corPrimaria: Color.fromRGBO(150, 30, 30, 1) ,
-            corSecundaria:Colors.white ,
-            corFontePrimaria: Color.fromARGB(255, 248, 244, 244),
-            corFonteSecundaria: Color.fromARGB(255, 193, 192, 192),
-            icone:'assets/images/mundinho.png' ,
-            titulo: 'Pró-Reitoria de Extensão e Assuntos Comunitários ',
-            tamanhoFontePrimaria: 16,
-            subTitulo: 'A PROEX é o órgão encarregado pela gestão das atividades de extensão...',
-            tamanhoFonteSecundaria: 12,
-          ),
-          meuPaddingPadrao(
-            context,
-            corPrimaria:Colors.white ,
-            corSecundaria:Color.fromRGBO(150, 30, 30, 1) ,
-            corFontePrimaria:  Colors.black87,
-            corFonteSecundaria: Colors.black54,
-            icone:'assets/images/conexao.png',
-            titulo: 'Organização da PROEX',
-            tamanhoFontePrimaria: 18,
-            subTitulo: 'Conheça nossos setores',
-            tamanhoFonteSecundaria: 14,
-          ),
-          meuPaddingPadrao(
-            context,
-            corPrimaria: Color.fromRGBO(150, 30, 30, 1) ,
-            corSecundaria:Colors.white ,
-            corFontePrimaria: Color.fromARGB(255, 248, 244, 244),
-            corFonteSecundaria: Color.fromARGB(255, 193, 192, 192),
-            icone:'assets/images/mundinho.png' ,
-            titulo: 'Pró-Reitoria de Extensão e Assuntos Comunitários ',
-            tamanhoFontePrimaria: 16,
-            subTitulo: 'A PROEX é o órgão encarregado pela gestão das atividades de extensão...',
-            tamanhoFonteSecundaria: 12,
-          ),
-          meuPaddingPadrao(
-            context,
-            corPrimaria:Colors.white ,
-            corSecundaria:Color.fromRGBO(150, 30, 30, 1) ,
-            corFontePrimaria:  Colors.black87,
-            corFonteSecundaria: Colors.black54,
-            icone:'assets/images/conexao.png',
-            titulo: 'Organização da PROEX',
-            tamanhoFontePrimaria: 18,
-            subTitulo: 'Conheça nossos setores',
-            tamanhoFonteSecundaria: 14,
-          ),
-          meuPaddingPadrao(
-            context,
-            corPrimaria: Color.fromRGBO(150, 30, 30, 1) ,
-            corSecundaria:Colors.white ,
-            corFontePrimaria: Color.fromARGB(255, 248, 244, 244),
-            corFonteSecundaria: Color.fromARGB(255, 193, 192, 192),
-            icone:'assets/images/mundinho.png' ,
-            titulo: 'Pró-Reitoria de Extensão e Assuntos Comunitários ',
-            tamanhoFontePrimaria: 16,
-            subTitulo: 'A PROEX é o órgão encarregado pela gestão das atividades de extensão...',
-            tamanhoFonteSecundaria: 12,
-          ),
-          meuPaddingPadrao(
-            context,
-            corPrimaria:Colors.white ,
-            corSecundaria:Color.fromRGBO(150, 30, 30, 1) ,
-            corFontePrimaria:  Colors.black87,
-            corFonteSecundaria: Colors.black54,
-            icone:'assets/images/conexao.png',
-            titulo: 'Organização da PROEX',
-            tamanhoFontePrimaria: 18,
-            subTitulo: 'Conheça nossos setores',
-            tamanhoFonteSecundaria: 14,
-          ),
-        ],
-      ),
-    );
-  }
+        );
 }

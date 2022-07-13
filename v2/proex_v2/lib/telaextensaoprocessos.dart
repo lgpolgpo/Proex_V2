@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:proex_v2/menulateral.dart';
+import 'package:proex_v2/telaextensao.dart';
 import 'telaprincipal.dart';
 
 class TelaExtensaoProcessos extends StatefulWidget {
@@ -13,7 +15,16 @@ class TelaExtensaoProcessos extends StatefulWidget {
 class _TelaExtensaoProcessosState extends State<TelaExtensaoProcessos> {
   @override
   Widget build(BuildContext context) {
-    return telaExtensaoProcessos(context);
+    return DefaultTabController(
+      length: 4,
+      initialIndex: 1,
+      child: Scaffold(
+        appBar: appBarTelaExtensao(),
+        drawer: MenuLateral(),
+        body:     telaExtensaoProcessos(context),
+      ),
+    );
+
   }
 }
 
@@ -40,7 +51,7 @@ Widget telaExtensaoProcessos(context){
         ),
         cardizinho(
           context,
-          corPrimaria:Color.fromRGBO(150, 30, 30, 1) ,
+          corPrimaria:Color.fromRGBO(150, 30, 30, 1),
           corFonte: Colors.white,
           tamanhoFonte: 10,
           texto: 'Identidade visual do centro cultural UFSJ',

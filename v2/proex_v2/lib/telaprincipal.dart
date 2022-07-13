@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
               meuPaddingPadrao(
                 context,
                 corPrimaria:Colors.white ,
-                corSecundaria:Color.fromRGBO(150, 30, 30, 1) ,
+                corSecundaria:Color.fromRGBO(150, 30, 30, 1),
                 corFontePrimaria:  Colors.black87,
                 corFonteSecundaria: Colors.black54,
                 icone:'assets/images/conexao.png',
@@ -107,7 +107,7 @@ AppBar minhaAppBar({ required String tituloAppBar}){
   return AppBar(
         titleTextStyle: const TextStyle(fontSize: 11),        
         title: Text(tituloAppBar),
-        backgroundColor: const Color.fromRGBO(150, 30, 30, 1),      
+        backgroundColor: Color.fromRGBO(150, 30, 30, 1),      
         actions: [
             IconButton(
               onPressed: () {

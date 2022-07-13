@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:proex_v2/gridview.dart';
 import 'package:proex_v2/menulateral.dart';
+import 'package:proex_v2/telaextensaoinicio.dart';
+import 'package:proex_v2/telaextensaoprocessos.dart';
 import 'telaprincipal.dart';
-import 'telaextensao.dart';
+//import 'telaextensao.dart';
 
 void main() {
   runApp(const ProexApp());
@@ -19,6 +20,7 @@ void main() {
 }
 
 class _ProexAppState extends State<ProexApp> {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,8 +28,7 @@ class _ProexAppState extends State<ProexApp> {
     routes: {
       'TelaPrincipal':(context) => MyHomePage(),
       'MenuLateral':(context) =>  MenuLateral() ,
-      'TelaExtensao':(context) => TelaExtensao(),
-      //'TelaExtensaoInicio':(context) => ;
+      'TelaExtensaoInicio':(context) => TelaExtensaoInicio(),
       'TelaExtensaoProcessos':(context) => TelaExtensaoProcessos(),
       //'Tela 1':(context) => Tela1();
       //'Tela 2':(context) => Tela2();
@@ -36,4 +37,4 @@ class _ProexAppState extends State<ProexApp> {
     );
   }
 } 
-final Color vermelhoProex=Color.fromRGBO(150, 30, 30, 1);
+  final Color vermelhoProex=Color.fromRGBO(150, 30, 30, 1);

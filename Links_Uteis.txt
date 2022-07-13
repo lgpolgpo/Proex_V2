@@ -1,0 +1,10 @@
+Links:
+
+->GitHub:
+
+https://github.com/lgpolgpo/Proex_V2.git
+
+->GitLab:
+
+https://gitlab.com/lgpolgpo/Proex_V2.git
+git@gitlab.com:lgpolgpo/Proex_V2.git

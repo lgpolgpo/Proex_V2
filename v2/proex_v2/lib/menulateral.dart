@@ -16,7 +16,7 @@ class _MenuLateralState extends State<MenuLateral> {
         child: ListView(
           children: <Widget>[
             DrawerHeader(
-              decoration:BoxDecoration(color: const Color.fromRGBO(150, 30, 30, 1)),
+              decoration:BoxDecoration(color: Color.fromRGBO(150, 30, 30, 1)),
               child: Image(
                   image: AssetImage('assets/images/logo.jpg'),
                   fit: BoxFit.contain,
@@ -38,7 +38,7 @@ class _MenuLateralState extends State<MenuLateral> {
                     title: Text('Inicio'),
                     leading: Icon(Icons.ads_click_rounded),
                     onTap: () {
-                       Navigator.pushNamed(context, 'TelaExtensao');
+                       Navigator.pushNamed(context, 'TelaExtensaoInicio');
                     },
                   ),
                   ListTile(
